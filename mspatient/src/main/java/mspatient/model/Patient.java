@@ -1,7 +1,14 @@
 package mspatient.model;
 
-public class Patient {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Patient {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String nom;
@@ -70,6 +77,9 @@ public class Patient {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public Patient() {
     }
 
     public Patient(int id, String nom, String prenom, int age, String sexe, String adresse, int numero) {

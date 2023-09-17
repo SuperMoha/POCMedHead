@@ -1,10 +1,18 @@
 package mshopital.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.ArrayList;
+@Entity
 
 public class Hopital {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String nom;
 
     private String adresse;
 
@@ -16,6 +24,10 @@ public class Hopital {
 
     private float latitude;
 
+    public Hopital() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -24,12 +36,12 @@ public class Hopital {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNom() {
+        return nom;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNom(String name) {
+        this.nom = nom;
     }
 
     public String getAdresse() {
@@ -72,9 +84,9 @@ public class Hopital {
         this.latitude = latitude;
     }
 
-    public Hopital(int id, String name, String adresse, ArrayList<String> specialite, int lits, float longitude, float latitude) {
+    public Hopital(int id, String nom, String adresse, ArrayList<String> specialite, int lits, float longitude, float latitude) {
         this.id = id;
-        this.name = name;
+        this.nom = nom;
         this.adresse = adresse;
         this.specialite = specialite;
         this.lits = lits;
@@ -86,7 +98,7 @@ public class Hopital {
     public String toString() {
         return "Hopital{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", nom='" + nom + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", specialite=" + specialite +
                 ", lits=" + lits +

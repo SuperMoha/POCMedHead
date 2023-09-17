@@ -1,10 +1,18 @@
 package msspecialite.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Specialite {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
+    private String nom;
 
     private String description;
 
@@ -16,12 +24,12 @@ public class Specialite {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNom() {
+        return nom;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNom(String name) {
+        this.nom = nom;
     }
 
     public String getDescription() {
@@ -32,9 +40,9 @@ public class Specialite {
         this.description = description;
     }
 
-    public Specialite(int id, String name, String description) {
+    public Specialite(int id, String nom, String description) {
         this.id = id;
-        this.name = name;
+        this.nom = nom;
         this.description = description;
     }
 
@@ -42,8 +50,11 @@ public class Specialite {
     public String toString() {
         return "Specialite{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public Specialite() {
     }
 }
