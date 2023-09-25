@@ -4,6 +4,7 @@ import mshopital.model.Hopital;
 import mshopital.service.HopitalService;
 import mspatient.model.Patient;
 import mspatient.service.PatientService;
+import msspecialite.dao.SpecialiteRepository;
 import msspecialite.model.Specialite;
 import msspecialite.service.SpecialiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class ApiController {
@@ -22,7 +24,7 @@ public class ApiController {
 
     private final String HOPITAL_SERVICE_URL = "http://localhost:9000/hopitaux/";
     private final String PATIENT_SERVICE_URL = "http://localhost:9001/patient/";
-    private final String SPECIALITE_SERVICE_URL = "http://localhost:9002/specialties/";
+    private final String SPECIALITE_SERVICE_URL = "http://localhost:9002/specialite/";
 
     @GetMapping("/api/hopitaux/{id}")
     public ResponseEntity<Hopital> getHospitalById(@PathVariable int id) {

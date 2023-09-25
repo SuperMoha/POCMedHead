@@ -28,7 +28,7 @@ public class Specialite {
         return nom;
     }
 
-    public void setNom(String name) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
