@@ -37,4 +37,22 @@ public class HopitalController {
     public void deleteHopital(@PathVariable int id) {
         hopitalService.deleteHopital(id);
     }
+
+
+    @GetMapping("/par-specialite/{specialite}")
+    public List<Hopital> getHopitauxBySpecialite(@PathVariable String specialite) {
+        return hopitalService.getHopitauxBySpecialite(specialite);
+    }
+
+    @GetMapping("/avec-lits-et-specialite/{specialite}")
+    public List<Hopital> getHopitauxAvecLitsEtSpecialite(@PathVariable String specialite) {
+        return hopitalService.getHopitauxAvecLitsEtSpecialite(specialite);
+    }
+
+
+    @PostMapping("/{id}/reserver-lits")
+    public void reserverLits(@PathVariable int id, @RequestParam int nombreDeLitsAReserver) {
+        hopitalService.reserverLits(id, nombreDeLitsAReserver);
+    }
+
 }

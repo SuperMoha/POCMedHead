@@ -2,18 +2,18 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Maven default annotation processors profile" enabled="true">
+      <profile name="Maven default annotation processors profile">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mshopital" />
         <module name="mspatient" />
-        <module name="msapi" />
-        <module name="msspecialite" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eureka" target="17" />
+      <module name="msapi" target="17" />
+      <module name="msspecialite" target="17" />
       <module name="zuul-server" target="17" />
     </bytecodeTargetLevel>
   </component>

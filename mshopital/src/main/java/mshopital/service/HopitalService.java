@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -47,19 +48,56 @@ public class HopitalService {
         hopitaux.add(new Hopital(3, "Hôpital Beverly Bashir", "Adresse3", new ArrayList<>(List.of("Immunologie", "Neuropathologie", "Diagnostic")), 5, 3, 7));
     }
 
-    public List<Hopital> getHopitauxBySpeciality(String speciality) {
-        List<Hopital> filteredHopitaux = new ArrayList<>();
-
-        for (Hopital hopital : hopitaux) {
-            if (hopital.getSpecialite().contains(speciality)) {
-                filteredHopitaux.add(hopital);
-            }
-        }
-
-        return filteredHopitaux;
-    }
 
     public void deleteHopital(int id) {
         hopitalRepository.deleteById(id);
     }
+
+    public List<Hopital> getHopitauxBySpecialite(String specialite) {
+        List<Hopital> hopitauxParSpecialite = new ArrayList<>();
+
+        for (Hopital hopital : hopitalRepository.findAll()) {
+            List<String> specialitesHopital = hopital.getSpecialite();
+
+            for (String s : specialitesHopital) {
+                List<String> specialites = Arrays.asList(s.split(", "));
+                if (specialites.contains(specialite)) {
+                    hopitauxParSpecialite.add(hopital);
+                    break;
+                }
+            }
+        }
+
+        return hopitauxParSpecialite;
+    }
+
+
+    public List<Hopital> getHopitauxAvecLitsEtSpecialite(String specialite) {
+        List<Hopital> hopitauxAvecLitsEtSpecialite = new ArrayList<>();
+
+        for (Hopital hopital : hopitalRepository.findAll()) {
+            List<String> specialitesHopital = hopital.getSpecialite();
+
+            for (String s : specialitesHopital) {
+                List<String> specialites = Arrays.asList(s.split(", "));
+
+                if (specialites.contains(specialite) && hopital.getLits() > 0) {
+                    hopitauxAvecLitsEtSpecialite.add(hopital);
+                    break;
+                }
+            }
+        }
+
+        return hopitauxAvecLitsEtSpecialite;
+    }
+
+
+    public void reserverLits(int hopitalId, int nombreDeLitsAReserver) {
+        Hopital hopital = hopitalRepository.findById(hopitalId).orElse(null);
+        if (hopital != null) {
+            hopital.reserverLit(nombreDeLitsAReserver);
+            hopitalRepository.save(hopital);
+        }
+    }
+
 }

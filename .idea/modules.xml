@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/POCMedHead.iml" filepath="$PROJECT_DIR$/.idea/POCMedHead.iml" />
-      <module fileurl="file://$PROJECT_DIR$/msspecialite/msspecialite.iml" filepath="$PROJECT_DIR$/msspecialite/msspecialite.iml" />
     </modules>
   </component>
 </project>
