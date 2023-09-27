@@ -49,10 +49,14 @@ public class HopitalController {
         return hopitalService.getHopitauxAvecLitsEtSpecialite(specialite);
     }
 
-
-    @PostMapping("/{id}/reserver-lits")
-    public void reserverLits(@PathVariable int id, @RequestParam int nombreDeLitsAReserver) {
-        hopitalService.reserverLits(id, nombreDeLitsAReserver);
+    @GetMapping("/coordonnees-patient")
+    public String[] obtenirCoordonneesPatient(@RequestParam String adresse) {
+        try {
+            return hopitalService.obtenirCoordonneesPatient(adresse);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

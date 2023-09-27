@@ -13,6 +13,7 @@
     <bytecodeTargetLevel>
       <module name="eureka" target="17" />
       <module name="msapi" target="17" />
+      <module name="msreservation" target="17" />
       <module name="msspecialite" target="17" />
       <module name="zuul-server" target="17" />
     </bytecodeTargetLevel>

@@ -1,8 +1,12 @@
 package mshopital.service;
 
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.model.GeocodingResult;
 import mshopital.dao.HopitalRepository;
 import mshopital.model.Hopital;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -92,12 +96,33 @@ public class HopitalService {
     }
 
 
-    public void reserverLits(int hopitalId, int nombreDeLitsAReserver) {
-        Hopital hopital = hopitalRepository.findById(hopitalId).orElse(null);
-        if (hopital != null) {
-            hopital.reserverLit(nombreDeLitsAReserver);
-            hopitalRepository.save(hopital);
+
+    @Value("${google.maps.apikey}")
+    private String apiKey;
+    public String[] obtenirCoordonneesPatient(String adressePatient) throws Exception {
+        GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey(apiKey)
+                .build();
+
+        GeocodingResult[] results = GeocodingApi.newRequest(context)
+                .address(adressePatient)
+                .await();
+
+        if (results.length > 0) {
+            double latitude = results[0].geometry.location.lat;
+            double longitude = results[0].geometry.location.lng;
+
+            String latitudeStr = String.valueOf(latitude);
+            String longitudeStr = String.valueOf(longitude);
+
+            System.out.println("Latitude : " + latitudeStr + ", Longitude : " + longitudeStr);
+
+            return new String[]{latitudeStr, longitudeStr};
+        } else {
+            throw new Exception("Impossible d'obtenir les coordonnées pour l'adresse fournie.");
         }
     }
+
+
 
 }
