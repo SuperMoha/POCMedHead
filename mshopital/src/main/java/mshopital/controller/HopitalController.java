@@ -49,10 +49,10 @@ public class HopitalController {
         return hopitalService.getHopitauxAvecLitsEtSpecialite(specialite);
     }
 
-    @GetMapping("/coordonnees-patient")
-    public String[] obtenirCoordonneesPatient(@RequestParam String adresse) {
+    @GetMapping("/hopitaux-proches")
+    public String[] getHopitauxProches(@RequestParam String adresse) {
         try {
-            return hopitalService.obtenirCoordonneesPatient(adresse);
+            return hopitalService.getHopitauxProches(adresse);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

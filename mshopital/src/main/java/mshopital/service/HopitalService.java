@@ -3,6 +3,7 @@ package mshopital.service;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.LatLng;
 import mshopital.dao.HopitalRepository;
 import mshopital.model.Hopital;
 import msreservation.model.Reservation;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TreeMap;
 
 @Service
 public class HopitalService {
@@ -103,7 +105,7 @@ public class HopitalService {
 
     @Value("${google.maps.apikey}")
     private String apiKey;
-    public String[] obtenirCoordonneesPatient(String adressePatient) throws Exception {
+    public String[] getHopitauxProches(String adressePatient) throws Exception {
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey(apiKey)
                 .build();
@@ -113,29 +115,60 @@ public class HopitalService {
                 .await();
 
         if (results.length > 0) {
-            double latitude = results[0].geometry.location.lat;
-            double longitude = results[0].geometry.location.lng;
+            double latitudePatient = results[0].geometry.location.lat;
+            double longitudePatient = results[0].geometry.location.lng;
 
-            String latitudeStr = String.valueOf(latitude);
-            String longitudeStr = String.valueOf(longitude);
+            String latitudeStr = String.valueOf(latitudePatient);
+            String longitudeStr = String.valueOf(longitudePatient);
 
             System.out.println("Latitude : " + latitudeStr + ", Longitude : " + longitudeStr);
 
-            return new String[]{latitudeStr, longitudeStr};
+
+            List<Hopital> hopitaux = obtenirHopitaux();
+
+            TreeMap<Double, Hopital> distances = new TreeMap<>();
+            for (Hopital hopital : hopitaux) {
+                if (hopital.getLits() > 0) {
+                    double distance = calculerDistance(
+                            latitudePatient, longitudePatient,
+                            hopital.getLatitude(), hopital.getLongitude()
+                    );
+                    distances.put(distance, hopital);
+                }
+            }
+
+            List<String> hopitauxOrdres = new ArrayList<>();
+            for (Hopital hopital : distances.values()) {
+                hopitauxOrdres.add(hopital.getNom());
+            }
+
+            return hopitauxOrdres.toArray(new String[0]);
         } else {
             throw new Exception("Impossible d'obtenir les coordonnées pour l'adresse fournie.");
         }
     }
 
+    private List<Hopital> obtenirHopitaux() {
+        return getAllHopitaux();
 
-    public void mettreAJourLitsDisponibles(int hopitalId, int litsReserves) {
-        Hopital hopital = hopitalRepository.findById(hopitalId).orElse(null);
-        if (hopital != null) {
-            int litsDisponibles = hopital.getLits() - litsReserves;
-            hopital.setLits(litsDisponibles);
-            hopitalRepository.save(hopital);
-        }
     }
+
+    private double calculerDistance(double lat1, double lon1, double lat2, double lon2) {
+        final int R = 6371;
+
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        return R * c;
+    }
+
+
 
 
 
