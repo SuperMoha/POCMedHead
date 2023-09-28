@@ -5,9 +5,13 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 import mshopital.dao.HopitalRepository;
 import mshopital.model.Hopital;
+import msreservation.model.Reservation;
+import msreservation.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -120,6 +124,16 @@ public class HopitalService {
             return new String[]{latitudeStr, longitudeStr};
         } else {
             throw new Exception("Impossible d'obtenir les coordonnées pour l'adresse fournie.");
+        }
+    }
+
+
+    public void mettreAJourLitsDisponibles(int hopitalId, int litsReserves) {
+        Hopital hopital = hopitalRepository.findById(hopitalId).orElse(null);
+        if (hopital != null) {
+            int litsDisponibles = hopital.getLits() - litsReserves;
+            hopital.setLits(litsDisponibles);
+            hopitalRepository.save(hopital);
         }
     }
 

@@ -106,8 +106,6 @@ public class Hopital {
                 '}';
     }
 
-    public void reserverLit(int nombreDeLitsAReserver) {
-        this.lits -= nombreDeLitsAReserver;
-    }
+
 
 }
