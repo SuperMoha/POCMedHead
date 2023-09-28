@@ -50,9 +50,9 @@ public class HopitalController {
     }
 
     @GetMapping("/hopitaux-proches")
-    public String[] getHopitauxProches(@RequestParam String adresse) {
+    public String[] getHopitauxProches(@RequestParam String adresse, String specialiteDemandee) {
         try {
-            return hopitalService.getHopitauxProches(adresse);
+            return hopitalService.getHopitauxProches(adresse,specialiteDemandee);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

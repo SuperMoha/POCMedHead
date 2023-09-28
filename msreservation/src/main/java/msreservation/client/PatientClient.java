@@ -5,7 +5,7 @@ import mspatient.model.Patient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "MSPatient", url = "http://localhost:9001/patient")  // Replace with the actual URL of your MSHospital service
+@FeignClient(name = "MSPatient", url = "http://localhost:9001/patient")
 public interface PatientClient {
 
     @GetMapping("/{id}")

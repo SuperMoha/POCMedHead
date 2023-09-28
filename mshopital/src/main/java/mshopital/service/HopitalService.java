@@ -105,7 +105,7 @@ public class HopitalService {
 
     @Value("${google.maps.apikey}")
     private String apiKey;
-    public String[] getHopitauxProches(String adressePatient) throws Exception {
+    public String[] getHopitauxProches(String adressePatient, String specialiteDemandee) throws Exception {
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey(apiKey)
                 .build();
@@ -128,7 +128,7 @@ public class HopitalService {
 
             TreeMap<Double, Hopital> distances = new TreeMap<>();
             for (Hopital hopital : hopitaux) {
-                if (hopital.getLits() > 0) {
+                if (hopital.getLits() > 0 && specialiteContient(hopital.getSpecialite(), specialiteDemandee)) {
                     double distance = calculerDistance(
                             latitudePatient, longitudePatient,
                             hopital.getLatitude(), hopital.getLongitude()
@@ -146,6 +146,15 @@ public class HopitalService {
         } else {
             throw new Exception("Impossible d'obtenir les coordonnées pour l'adresse fournie.");
         }
+    }
+
+    private boolean specialiteContient(List<String> specialitesHopital, String specialiteDemandee) {
+        for (String specialite : specialitesHopital) {
+            if (specialite.toLowerCase().contains(specialiteDemandee.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private List<Hopital> obtenirHopitaux() {
