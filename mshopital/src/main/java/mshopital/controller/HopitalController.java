@@ -3,6 +3,8 @@ package mshopital.controller;
 import mshopital.model.Hopital;
 import mshopital.service.HopitalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,12 +52,13 @@ public class HopitalController {
     }
 
     @GetMapping("/hopitaux-proches")
-    public String[] getHopitauxProches(@RequestParam String adresse, String specialiteDemandee) {
+    public ResponseEntity<List<Hopital>> getHopitauxProches(@RequestParam String adresse, @RequestParam String specialiteDemandee) {
         try {
-            return hopitalService.getHopitauxProches(adresse,specialiteDemandee);
+            List<Hopital> hopitauxList = hopitalService.getHopitauxProches(adresse, specialiteDemandee);
+            return ResponseEntity.ok(hopitauxList);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 

@@ -105,7 +105,7 @@ public class HopitalService {
 
     @Value("${google.maps.apikey}")
     private String apiKey;
-    public String[] getHopitauxProches(String adressePatient, String specialiteDemandee) throws Exception {
+    public List<Hopital> getHopitauxProches(String adressePatient, String specialiteDemandee) throws Exception {
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey(apiKey)
                 .build();
@@ -137,12 +137,12 @@ public class HopitalService {
                 }
             }
 
-            List<String> hopitauxOrdres = new ArrayList<>();
+            List<Hopital> hopitauxOrdres = new ArrayList<>();
             for (Hopital hopital : distances.values()) {
-                hopitauxOrdres.add(hopital.getNom());
+                hopitauxOrdres.add(hopital);
             }
 
-            return hopitauxOrdres.toArray(new String[0]);
+            return hopitauxOrdres;
         } else {
             throw new Exception("Impossible d'obtenir les coordonnées pour l'adresse fournie.");
         }
