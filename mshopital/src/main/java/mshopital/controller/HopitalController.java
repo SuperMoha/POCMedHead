@@ -1,5 +1,6 @@
 package mshopital.controller;
 
+import jakarta.servlet.http.HttpSession;
 import mshopital.model.Hopital;
 import mshopital.service.HopitalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/hopitaux")
 public class HopitalController {
 
     @Autowired
-    private HopitalService hopitalService;
+    private HttpSession httpSession;
+
+    private final HopitalService hopitalService;
+
+    public HopitalController(HopitalService hopitalService) {
+        this.hopitalService = hopitalService;
+    }
+
 
     @GetMapping
     public List<Hopital> getAllHopitaux() {
@@ -40,19 +50,9 @@ public class HopitalController {
         hopitalService.deleteHopital(id);
     }
 
-
-    @GetMapping("/par-specialite/{specialite}")
-    public List<Hopital> getHopitauxBySpecialite(@PathVariable String specialite) {
-        return hopitalService.getHopitauxBySpecialite(specialite);
-    }
-
-    @GetMapping("/avec-lits-et-specialite/{specialite}")
-    public List<Hopital> getHopitauxAvecLitsEtSpecialite(@PathVariable String specialite) {
-        return hopitalService.getHopitauxAvecLitsEtSpecialite(specialite);
-    }
-
     @GetMapping("/hopitaux-proches")
     public ResponseEntity<List<Hopital>> getHopitauxProches(@RequestParam String adresse, @RequestParam String specialiteDemandee) {
+
         try {
             List<Hopital> hopitauxList = hopitalService.getHopitauxProches(adresse, specialiteDemandee);
             return ResponseEntity.ok(hopitauxList);

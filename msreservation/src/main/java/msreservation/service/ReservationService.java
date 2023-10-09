@@ -44,8 +44,10 @@ public class ReservationService {
 
         reservationRepository.save(reservation);
 
-        Hopital hopital = hospitalClient.getHopitalById(reservation.getHopitalId());
         Patient patient = patientClient.getPatientById(reservation.getPatientId());
+
+        Hopital hopital = hospitalClient.getHopitalById(reservation.getHopitalId());
+
         if (hopital == null) {
             throw new RuntimeException("L'hôpital spécifié n'existe pas.");
         }
@@ -54,8 +56,9 @@ public class ReservationService {
 
         if (litsActuels > 0) {
             hopital.setLits(litsActuels - 1);
-            hospitalClient.updateHopital(hopital.getId(), hopital);
             patientClient.updatePatient(patient.getId(), patient);
+            hospitalClient.updateHopital(hopital.getId(), hopital);
+
         } else {
 
             reservationRepository.delete(reservation);

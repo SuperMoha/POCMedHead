@@ -63,45 +63,6 @@ public class HopitalService {
         hopitalRepository.deleteById(id);
     }
 
-    public List<Hopital> getHopitauxBySpecialite(String specialite) {
-        List<Hopital> hopitauxParSpecialite = new ArrayList<>();
-
-        for (Hopital hopital : hopitalRepository.findAll()) {
-            List<String> specialitesHopital = hopital.getSpecialite();
-
-            for (String s : specialitesHopital) {
-                List<String> specialites = Arrays.asList(s.split(", "));
-                if (specialites.contains(specialite)) {
-                    hopitauxParSpecialite.add(hopital);
-                    break;
-                }
-            }
-        }
-
-        return hopitauxParSpecialite;
-    }
-
-
-    public List<Hopital> getHopitauxAvecLitsEtSpecialite(String specialite) {
-        List<Hopital> hopitauxAvecLitsEtSpecialite = new ArrayList<>();
-
-        for (Hopital hopital : hopitalRepository.findAll()) {
-            List<String> specialitesHopital = hopital.getSpecialite();
-
-            for (String s : specialitesHopital) {
-                List<String> specialites = Arrays.asList(s.split(", "));
-
-                if (specialites.contains(specialite) && hopital.getLits() > 0) {
-                    hopitauxAvecLitsEtSpecialite.add(hopital);
-                    break;
-                }
-            }
-        }
-
-        return hopitauxAvecLitsEtSpecialite;
-    }
-
-
 
     @Value("${google.maps.apikey}")
     private String apiKey;
