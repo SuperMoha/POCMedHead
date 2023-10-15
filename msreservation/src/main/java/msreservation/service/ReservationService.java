@@ -65,4 +65,14 @@ public class ReservationService {
             throw new RuntimeException("Pas assez de lits disponibles dans cet hôpital. La réservation a été annulée.");
         }
     }
+
+    public void updateReservation(int id, Reservation updatedReservation) {
+        Reservation existingReservation = reservationRepository.findById(id).orElse(null);
+        if (existingReservation != null) {
+            existingReservation.setId(updatedReservation.getId());
+            existingReservation.setHopitalId(updatedReservation.getHopitalId());
+            existingReservation.setPatientId(updatedReservation.getPatientId());
+            reservationRepository.save(existingReservation);
+        }
+    }
 }

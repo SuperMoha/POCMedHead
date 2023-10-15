@@ -1,6 +1,7 @@
 package msreservation.controller;
 
 import mshopital.service.HopitalService;
+import mspatient.model.Patient;
 import msreservation.model.Reservation;
 import msreservation.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class ReservationController {
         reservationService.deleteReservation(id);
     }
 
+    @PutMapping("/{id}")
+    public void updateReservation(@PathVariable int id, @RequestBody Reservation updatedReservation) {
+        reservationService.updateReservation(id, updatedReservation);
+    }
 
     @PostMapping
     public void createReservation(@RequestBody Reservation reservation) {
