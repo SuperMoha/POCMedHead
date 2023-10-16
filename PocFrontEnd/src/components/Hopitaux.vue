@@ -72,21 +72,33 @@
 
 
                 <div v-if="hopitaux.length > 0">
-                  <h2>Résultats:</h2>
-                  <ul>
-                    <li v-for="(hopital, index) in hopitaux" :key="hopital.id">
-                      <div :class="{ 'highlighted-hopital': index === 0 }">
-                        {{ hopital.nom }} - {{ hopital.adresse }} - Nombre de lits disponibles : {{ hopital.lits }}
-                        <button v-if="index === 0" @click="reserverHopital(hopital)">Réserver</button>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div v-else>
-                  <p></p>
-                </div>
-              </div>
+              <h2>L'hopital le plus proche est le suivant :</h2>
+              <ul>
+                <li :key="hopitaux[0].id">
+                  <div class="highlighted-hopital">
+                    {{ hopitaux[0].nom }} situé à {{ hopitaux[0].adresse }} possédant : {{ hopitaux[0].lits }} lits
+                    <button @click="reserverHopital(hopitaux[0])">Réserver</button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div v-else>
+              <p></p>
+            </div>
 
+            <button @click="showHopitaux = !showHopitaux">Afficher/Masquer les hopitaux supp.</button>
+
+            <div v-if="showHopitaux">
+              <h2>Autres hopitaux à proximité :</h2>
+              <ul>
+                <li v-for="(hopital, index) in hopitaux.slice(1)" :key="hopital.id">
+                  <div>
+                    {{ hopital.nom }} situé à {{ hopital.adresse }} possédant : {{ hopital.lits }} lits
+                  </div>
+                </li>
+              </ul>
+            </div>
+</div>
             </div>
           </div>
         </div>
@@ -94,7 +106,13 @@
     </div>
   </div>
 </template>
-  
+<style scoped>
+.highlighted-hopital {
+  border: 2px solid #ff5733;
+  padding: 5px; 
+  border-radius: 5px;
+}
+</style>
 <style>
 * {
   padding: 0;
@@ -462,7 +480,8 @@ export default {
         "Urologie",
         "Chirurgie vasculaire"
       ],
-      hopitaux: []
+      hopitaux: [],
+      showHopitaux: false
     };
   },
   methods: {
