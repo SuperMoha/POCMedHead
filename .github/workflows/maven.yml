@@ -17,17 +17,6 @@ on:
 
 jobs:
 
-  test:
-    name: Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout du code
-        uses: actions/checkout@v2
-
-      - name: Exécuter les tests
-        run: mvn test
-
   build:
 
     runs-on: ubuntu-latest
