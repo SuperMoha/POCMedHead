@@ -40,10 +40,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+
     - name: Build with Maven
       run: mvn -B package --file mshopital/pom.xml
+
     - name : Build with Maven 2
       run: mvn -B package --file mspatient/pom.xml
+
     - name : Build with Maven 3
       run: mvn -B package --file msreservation/pom.xml
 
