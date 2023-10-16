@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -9,11 +8,15 @@
         <option value="$PROJECT_DIR$/msspecialite/pom.xml" />
         <option value="$PROJECT_DIR$/zuul-server/pom.xml" />
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/msapi/pom.xml" />
+        <option value="$PROJECT_DIR$/msreservation/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/msapi/pom.xml" />
+        <option value="$PROJECT_DIR$/msspecialite/pom.xml" />
         <option value="$PROJECT_DIR$/zuul-server/pom.xml" />
       </set>
     </option>

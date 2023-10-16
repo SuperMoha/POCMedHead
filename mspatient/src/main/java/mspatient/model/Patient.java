@@ -21,7 +21,27 @@ public class Patient {
 
     private String adresse;
 
-    private int numero;
+    private String numero;
+
+    private String username;
+
+    private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String userName) {
+        this.username = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -71,18 +91,18 @@ public class Patient {
         this.adresse = adresse;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
     public Patient() {
     }
 
-    public Patient(int id, String nom, String prenom, int age, String sexe, String adresse, int numero) {
+    public Patient(int id, String nom, String prenom, int age, String sexe, String adresse, String numero) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
