@@ -6,8 +6,6 @@ import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import mshopital.dao.HopitalRepository;
 import mshopital.model.Hopital;
-import msreservation.model.Reservation;
-import msreservation.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
