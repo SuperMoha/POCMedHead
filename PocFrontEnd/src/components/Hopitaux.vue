@@ -44,7 +44,7 @@
       
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-          <button @click="deconnexion" class="field input" type="button">Déconnexion</button>
+          <button id="deconnexion" @click="deconnexion" class="field input" type="button">Déconnexion</button>
           <h1>Hopitaux</h1>
         </div>
         <div class="formbg-outer">
@@ -57,10 +57,10 @@
 
                 <form @submit.prevent="fetchHopitauxProches">
                   <label for="adresse">Veuillez saisir votre adresse actuelle :</label>
-                  <input ref="adresse" type="text" required>
+                  <input ref="adresse" id="adresse" type="text" required>
                   <br>
                   <label for="specialite">Spécialité voulue:</label>
-                  <select ref="specialite" required>
+                  <select ref="specialite" id="specialite" required>
                     <option v-for="specialite in specialites" :value="specialite" :key="specialite">
                       {{ specialite }}
                     </option>
@@ -77,7 +77,7 @@
                 <li :key="hopitaux[0].id">
                   <div class="highlighted-hopital">
                     {{ hopitaux[0].nom }} situé à {{ hopitaux[0].adresse }} possédant : {{ hopitaux[0].lits }} lits
-                    <button @click="reserverHopital(hopitaux[0])">Réserver</button>
+                    <button id="reserver" @click="reserverHopital(hopitaux[0])">Réserver</button>
                   </div>
                 </li>
               </ul>
@@ -86,7 +86,7 @@
               <p></p>
             </div>
 
-            <button @click="showHopitaux = !showHopitaux">Afficher/Masquer les hopitaux supp.</button>
+            <button id="supp" @click="showHopitaux = !showHopitaux">Afficher/Masquer les hopitaux supp.</button>
 
             <div v-if="showHopitaux">
               <h2>Autres hopitaux à proximité :</h2>

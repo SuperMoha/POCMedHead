@@ -53,9 +53,9 @@
                     </div>
                     <input type="password" id="password" v-model="patient.password">
                   </div>
-                  <label for="password">Pas de compte ?   <router-link to="/Inscription">Inscription</router-link></label>
+                  <label for="password">Pas de compte ?   <router-link data-cy="inscription" to="/Inscription">Inscription</router-link></label>
                   <div class="field padding-bottom--24">
-                    <input type="submit" name="submit" value="Continue">
+                    <input data-cy="submit" type="submit" name="submit" value="Continue">
                   </div>
 
                 </form>

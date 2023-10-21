@@ -79,7 +79,7 @@
                     <input required type="password" id="password" v-model="patient.password" />
                   </div>
 
-                  <div class="rgpd-link" @click="openRGPDPopup">Consentement RGPD</div>
+                  <div class="rgpd-link" data-cy="rgpd" @click="openRGPDPopup">Consentement RGPD</div>
 
                   <div v-if="showRGPDPopup" class="rgpd-popup">
                     <div class="rgpd-popup-content">
@@ -92,9 +92,9 @@
                       <button @click="closeRGPDPopup">Fermer</button>
                     </div>
                   </div>
-                  <label for="password">Déjà inscrit ? <router-link to="/">Connexion</router-link></label>
+                  <label for="password">Déjà inscrit ? <router-link data-cy="connexion" to="/">Connexion</router-link></label>
                   <div class="field padding-bottom--24">
-                    <input type="submit" name="submit" value="S'inscrire">
+                    <input data-cy="submit" type="submit" name="submit" value="S'inscrire">
                   </div>
 
                 </form>
@@ -418,7 +418,7 @@ export default {
           return;
         }
         const response = await axios.post('http://localhost:9001/patient/signup', this.patient);
-        if (response.data === 'Signup successful') {
+        if (response.data === 'Inscription réussie') {
           alert('Inscription réussie !');
           window.location.href = '/';
         } else {
