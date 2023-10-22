@@ -48,18 +48,18 @@ public class PatientIntegrationTests {
         newPatient.setNumero("123456789");
         newPatient.setUsername("testuser");
 
-        // Mock the behavior of the patient service
+
         when(patientService.createPatient(any(Patient.class))).thenReturn(newPatient);
         when(patientService.getPatientById(1)).thenReturn(newPatient);
 
-        // Create a new patient
+
         mockMvc.perform(post("/patient/signup")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(newPatient)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Inscription réussie"));  // Or whatever the successful signup message is
+                .andExpect(content().string("Inscription réussie"));
 
-        // Retrieve and validate the created patient
+
         mockMvc.perform(get("/patient/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

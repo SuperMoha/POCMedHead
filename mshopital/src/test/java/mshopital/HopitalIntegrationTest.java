@@ -34,22 +34,22 @@ public class HopitalIntegrationTest {
     public void testCreateAndRetrieveHopital() throws Exception {
         Hopital newHopital = new Hopital(1, "Hopital A", "Address A", null, 5, 1.0f, 1.0f);
 
-        // Mock the behavior of the service
+
 
         doAnswer(invocation -> {
             Object[] args = invocation.getArguments();
-            // Additional logic can be added here if necessary
-            return null; // Void methods can return null
+
+            return null;
         }).when(hopitalService).createHopital(any(Hopital.class));
         when(hopitalService.getHopitalById(1)).thenReturn(newHopital);
 
-        // Create a new hospital
+
         mockMvc.perform(post("/hopitaux")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(newHopital)))
                 .andExpect(status().isOk());
 
-        // Retrieve and validate the created hospital
+
         mockMvc.perform(get("/hopitaux/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

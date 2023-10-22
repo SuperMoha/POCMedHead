@@ -52,31 +52,30 @@ public class ReservationIntegrationTest {
         newReservation.setPatientId(3);
 
         Patient mockPatient = new Patient();
-        // Initialize mockPatient fields
+
         mockPatient.setId(3);
 
         Hopital mockHopital = new Hopital();
-        // Initialize mockHopital fields
+
         mockHopital.setId(2);
 
-        // Mock the behavior of the services and Feign clients
-        // Mock the behavior of the services and Feign clients
+
         doAnswer(invocation -> {
             Object[] args = invocation.getArguments();
-            // Additional logic can be added here if necessary
+
             return null;
         }).when(reservationService).createReservation(any(Reservation.class));
         when(reservationService.getReservationById(1)).thenReturn(newReservation);
         when(patientClient.getPatientById(any(Integer.class))).thenReturn(mockPatient);
         when(hospitalClient.getHopitalById(any(Integer.class))).thenReturn(mockHopital);
 
-        // Create a new reservation
+
         mockMvc.perform(post("/reservation")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(newReservation)))
                 .andExpect(status().isOk());
 
-        // Retrieve and validate the created reservation
+
         mockMvc.perform(get("/reservation/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

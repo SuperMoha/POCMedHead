@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-@Transactional // Rollback the transaction after each test to keep the database in a clean state
+@Transactional
 public class PatientCrudIntegrationTest {
 
     @Autowired
@@ -19,7 +19,7 @@ public class PatientCrudIntegrationTest {
 
     @Test
     public void testCreateAndRetrievePatient() {
-        // Create a new patient
+
         Patient patient = new Patient();
         patient.setId(1);
         patient.setNom("John");
@@ -30,16 +30,16 @@ public class PatientCrudIntegrationTest {
         patient.setNumero("123456789");
         patient.setUsername("testuser");
 
-        // Save the patient to the database
+
         Patient savedPatient = patientRepository.save(patient);
 
-        // Retrieve the patient from the database by ID
+
         Patient retrievedPatient = patientRepository.findById(savedPatient.getId()).orElse(null);
 
-        // Assert that the retrieved patient is not null
+
         assertNotNull(retrievedPatient);
 
-        // Add more assertions as needed to check if the data is correct
+
         assertEquals(1, retrievedPatient.getId());
         assertEquals("John", retrievedPatient.getNom());
         assertEquals("Doe", retrievedPatient.getPrenom());
