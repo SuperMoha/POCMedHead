@@ -1,11 +1,10 @@
 package msreservation.controller;
 
-import mshopital.service.HopitalService;
-import mspatient.model.Patient;
+
 import msreservation.model.Reservation;
 import msreservation.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

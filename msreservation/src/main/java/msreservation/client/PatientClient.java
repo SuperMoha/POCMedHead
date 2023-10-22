@@ -1,9 +1,11 @@
 package msreservation.client;
 
-import mshopital.model.Hopital;
-import mspatient.model.Patient;
+import msreservation.model.Patient;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "MSPatient", url = "http://localhost:9001/patient")
 public interface PatientClient {

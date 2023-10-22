@@ -1,8 +1,7 @@
 package msreservation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import mshopital.model.Hopital;
-import mshopital.service.HopitalService;
+
 import msreservation.model.Reservation;
 import msreservation.service.ReservationService;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
