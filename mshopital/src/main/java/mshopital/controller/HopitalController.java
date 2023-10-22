@@ -16,7 +16,7 @@ import java.util.List;
 public class HopitalController {
 
     @Autowired
-    private HttpSession httpSession;
+
 
     private final HopitalService hopitalService;
 
