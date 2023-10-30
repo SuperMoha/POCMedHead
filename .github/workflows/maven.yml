@@ -74,13 +74,9 @@ jobs:
           cd PocFrontEnd
           npm run build
 
+
       - name: Run E2E tests
         run: |
           cd PocFrontEnd
+          npm run dev &&
           npm run test:e2e
-
-      - name: Run Frontend
-        run: |
-          cd PocFrontEnd
-          npm run dev
-
