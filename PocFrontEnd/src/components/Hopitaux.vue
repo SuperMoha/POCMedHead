@@ -523,6 +523,7 @@ export default {
 
     deconnexion() {
 
+      localStorage.removeItem('patientId');
       localStorage.removeItem('session');
 
 

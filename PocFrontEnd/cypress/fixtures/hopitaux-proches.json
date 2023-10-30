@@ -1,0 +1,18 @@
+[
+    {
+      "nom": "Bath Clinic",
+      "adresse": "Bath Clinic Claverton Down Road Combe Down Bath  BA2 7BR",
+      "specialite": "Médecine de réadaptation, Psychiatrie de la vieillessse, Allergie, Dentisterie restauratrice ",
+      "lits": "79", 
+      "latitude": "51.364284515380859",
+      "longitude": "-2.332021951675415"
+    },
+    {
+      "nom": "The Beardwood Hospital",
+      "adresse": "Preston New Road  Blackburn Lancashire BB2 7AE",
+      "specialite": "Neurophysiologie clinique, Virologie, Autre, Médecine gériatrique, Médecine générale (interne), Microbiologie médicale ",
+      "lits": "286",
+      "latitude": "53.755043029785156",
+      "longitude": "-2.5131618976593018"
+    }
+  ]

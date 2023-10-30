@@ -55,7 +55,7 @@
                   </div>
                   <label for="password">Pas de compte ?   <router-link data-cy="inscription" to="/Inscription">Inscription</router-link></label>
                   <div class="field padding-bottom--24">
-                    <input data-cy="submit" type="submit" name="submit" value="Continue">
+                    <input data-cy="submit" id="submit" type="submit" name="submit" value="Continue">
                   </div>
 
                 </form>
@@ -376,10 +376,10 @@ export default {
           localStorage.setItem('lepatient', response.data.patientId)
           localStorage.setItem('session', response.data.session)
         } else {
-          alert('Nom dutilisateur ou mot de passe incorrect');
+          //alert('Nom dutilisateur ou mot de passe incorrect');
         }
       } catch (error) {
-        alert('Nom dutilisateur ou mot de passe incorrect');
+        //alert('Nom dutilisateur ou mot de passe incorrect');
       }
     }
   }

@@ -1,0 +1,34 @@
+[
+    {
+      "nom": "Walton Community Hospital - Virgin Care Services Ltd",
+      "adresse": "Rodney Road Walton-on-Thames Surrey KT12 3LD",
+      "specialite": "Cardiologie pédiatrique, Psychiatrie générale, Parodontie, Médecine respiratoire, Oncologie médicale, Neurologie, Gastroentérologie",
+      "lits": "110",
+      "latitude": "51.379997253417969",
+      "longitude": "-0.40604206919670105"
+    },
+    {
+      "nom": "Woking Community Hospital (Virgin Care)",
+      "adresse": "Heathside Road Woking Surrey GU22 7HS",
+      "specialite": "Neuropathologie diagnostique, Psychothérapie, Chirurgie buccale, Cardiologie, Pathologie générale",
+      "lits": "148",
+      "latitude": "51.315132141113281",
+      "longitude": "-0.55628949403762817"
+    },
+    {
+      "nom": "North Somerset Community Partnership Cic HQ",
+      "adresse": "Castlewood Tickenham Road Clevedon Avon BS21 6AB",
+      "specialite": "Ophtalmologie médicale, Rhumatologie, Pratique de lart dentaire",
+      "lits": "312",
+      "latitude": "51.439693450927734",
+      "longitude": "-2.8400685787200928"
+    },
+    {
+      "nom": "North Somerset Community Hospital",
+      "adresse": "North Somerset Community Hospital Old Street Clevedon Avon BS21 6BS",
+      "specialite": "Ophtalmologie, Chirurgie buccale, Hématologie",
+      "lits": "478",
+      "latitude": "51.43719482421875",
+      "longitude": "-2.8471927642822266"
+    }
+  ]

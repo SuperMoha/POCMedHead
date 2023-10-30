@@ -1,22 +1,39 @@
 describe('Connexion', () => {
   it('Visiter la page de connexion et se connecter', () => {
-    cy.visit('/')
-    cy.contains('h1', 'Connexion')
+    cy.visit('/');
+    cy.contains('h1', 'Connexion');
 
-    cy.get('#username').type('sophie');
-    cy.get('#password').type('jean');
-    cy.get('[data-cy="submit"]').click();
+    cy.fixture('validlogin.json').then((loginData) => {
+      cy.intercept('POST', '/patient/login', {
+        statusCode: 200,
+        body: {
+          success: true,
+          message: 'Connexion réussie'
+        }
+      }).as('loginRequest');
 
-    cy.url().should('include', '/hopitaux');
-  })
+      cy.get('#username').type(loginData.username);
+      cy.get('#password').type(loginData.password);
+      cy.get('[data-cy="submit"]').click();
 
+      localStorage.setItem('lepatient', 1);
+      localStorage.setItem('session', 123);
+
+      cy.wait('@loginRequest').then((interception) => {
+        expect(interception.response.statusCode).to.eq(200);
+
+      });
+    });
+  });
 
   it('Afficher une erreur si les logs sont incorrects', () => {
     cy.visit('/');
-
-    cy.get('#username').type('yohan'); 
-    cy.get('#password').type('blabla');
-    cy.get('[data-cy=submit]').click();
+    
+    cy.fixture('invalidlogin.json').then((loginData) => {
+      cy.get('#username').type(loginData.username);
+      cy.get('#password').type(loginData.password);
+      cy.get('[data-cy=submit]').click();
+    });
 
     cy.on('window:alert', (str) => {
       expect(str).to.equal('Nom dutilisateur ou mot de passe incorrect');
@@ -25,9 +42,9 @@ describe('Connexion', () => {
 
   it('Aller sur la page dinscription', () => {
     cy.visit('/');
-
+    
     cy.get('[data-cy=inscription]').click();
-
+    
     cy.url().should('include', '/Inscription');
   });
-})
+});
