@@ -22,11 +22,52 @@ Le microservice Reservation permet d'enregistrer les réservations des patients 
 
 ## Tests
 
-//
+# Test de stress
+
+[StressTests](https://github.com/SuperMoha/POCMedHead/blob/main/jmeter/Stress%20Test%20POCMedHead.jmx)
+
+Les tests de stress sont réalisés grâce à l'outil JMeter, ils permettent de réaliser une montée en charge de l'application et de retourner des résultats.
+
+# Test du microservice Patient
+cd mspatient
+
+mvn test
+
+# Test du microservice Hopital
+cd mshopital
+
+mvn test
+
+# Test du microservice Reservation
+cd msreservation
+
+mvn test
 
 ## Build
 
-//
+# Build du microservice Patient
+cd mspatient
+
+mvn package
+
+# Build du microservice Hopital
+cd mshopital
+
+mvn package
+
+# Build du microservice Reservation
+cd msreservation
+
+mvn package
+
+## Pipeline CI/CD
+
+[Pipeline](https://github.com/SuperMoha/POCMedHead/blob/main/.github/workflows/maven.yml)
+
+
+Ce fichier de configuration permet d'automatiser les tests, le build et le déploiement du projet selon les branches définies. Il utilise Maven pour les microservices Java et Node.js pour le frontend.
+
+Le workflow Git retenu est structuré de manière à favoriser l'intégration continue et les déploiements réguliers. Il est recommandé de suivre ces bonnes pratiques pour assurer la stabilité et la fiabilité du projet.
 
 ## Workflow GIT
 
