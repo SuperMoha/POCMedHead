@@ -3,10 +3,10 @@ name: Java CI/CD
 on:
   push:
     branches:
-      - cicd
+      - main
   pull_request:
     branches:
-      - cicd
+      - main
   workflow_dispatch:
 
 jobs:
