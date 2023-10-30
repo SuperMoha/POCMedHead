@@ -78,4 +78,4 @@ jobs:
       - name: Run E2E tests
         run: |
           cd PocFrontEnd
-          npm run dev --verbose
+          npm run test:e2e
