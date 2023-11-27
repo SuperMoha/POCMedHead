@@ -1,5 +1,7 @@
+# Définition du nom du workflow
 name: Java CI/CD
 
+# Déclenchement du workflow sur les événements de push vers la branche principale,
 on:
   push:
     branches:
@@ -9,12 +11,17 @@ on:
       - main
   workflow_dispatch:
 
+# Définition des jobs pour les tests, la construction, et la gestion du frontend
 jobs:
+
+  # Job pour les tests des composants Java
   test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+
+      # Configure JDK 17 pour les tests
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -22,20 +29,26 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      # Exécute les tests pour le microservice mspatient
       - name: Test mspatient with Maven
         run: mvn -B test --file mspatient/pom.xml
 
+      # Exécute les tests pour le microservice mshopital
       - name: Test mshopital with Maven
         run: mvn -B test --file mshopital/pom.xml
 
+      # Exécute les tests pour le microservice msreservation
       - name: Test with Maven (msreservation)
         run: mvn -B test --file msreservation/pom.xml
 
+  # Job pour la construction des composants Java
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+
+      # Configure JDK 17 pour la construction
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -43,37 +56,45 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+
+      # Construction du microservice mspatient
       - name: Build mspatient with Maven
         run: mvn -B package --file mspatient/pom.xml
 
+      # Construction du microservice mshopital
       - name: Build mshopital with Maven
         run: mvn -B package --file mshopital/pom.xml
 
+      # Construction du microservice msreservation
       - name: Build with Maven (msreservation)
         run: mvn -B package --file msreservation/pom.xml
 
-
+  # Job pour la gestion du frontend
   frontend:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
+      # Installe Node.js et npm pour le frontend
       - name: Install Node.js and npm
         uses: actions/setup-node@v2
         with:
           node-version: '20.5.1'
 
+      # Installation des dépendances du frontend
       - name: Install dependencies
         run: |
           cd PocFrontEnd
           npm install
 
+      # Construction du frontend
       - name: Build frontend
         run: |
           cd PocFrontEnd
           npm run build
 
+      # Execution des tests end-to-end pour le frontend
       - name: Run E2E tests
         run: |
           cd PocFrontEnd
