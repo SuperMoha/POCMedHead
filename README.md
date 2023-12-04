@@ -1,73 +1,82 @@
+
 # POC MedHead
 
+
 Le projet vise à développer un système d'intervention d'urgence en temps réel pour le consortium MedHead. Ce système a pour objectif d'améliorer la qualité des traitements d'urgence et de sauver plus de vies.
- 
-## Microservice : Hopital
 
-Le microservice Hopital permet de faire la gestion des hopitaux.
 
-- PORT : 9000
+## Installation
 
-## Microservice : Patient
+Cloner le projet
 
-Le microservice Patient permet de faire la gestion des patients.
+```bash
+git clone https://github.com/SuperMoha/POCMedHead.git
+```
+Aller dans le répertoire
 
-- PORT : 9001
+```bash
+cd POCMedHead
+```
 
-## Microservice : Reservation
+Construire les microservices
 
-Le microservice Reservation permet d'enregistrer les réservations des patients pour les lits d'hopitaux.
+```bash
+mvn package
+```
 
-- PORT : 9002
+Exécuter le frontend 
 
+```bash
+npm run dev
+```   
+## Screenshots
+
+### Page de connexion
+![App Screenshot](https://i.imgur.com/2wT0Vfa.png)
+### Page d'inscription
+![App Screenshot](https://i.imgur.com/CO0JgW4.png)
+### Page de recherche d'hopitaux
+![App Screenshot](https://i.imgur.com/RFNbN4o.png)
 ## Tests
 
-# Test de stress
+Pour exécuter les tests côté backend
 
-[StressTests](https://github.com/SuperMoha/POCMedHead/blob/main/jmeter/Stress%20Test%20POCMedHead.jmx)
-
+```bash
+mvn test
+```
+Pour exécuter les tests côté frontend
+```bash
+npm run test:e2e
+```
 Les tests de stress sont réalisés grâce à l'outil JMeter, ils permettent de réaliser une montée en charge de l'application et de retourner des résultats.
 
-# Test du microservice Patient
-cd mspatient
+[Fichier JMeter](https://github.com/SuperMoha/POCMedHead/blob/main/jmeter/Stress%20Test%20POCMedHead.jmx)
 
-mvn test
+## Microservices
 
-# Test du microservice Hopital
-cd mshopital
+- Le microservice Hopital permet de faire la gestion des hopitaux.
 
-mvn test
+- Le microservice Patient permet de faire la gestion des patients.
 
-# Test du microservice Reservation
-cd msreservation
+- Le microservice Reservation permet d'enregistrer les réservations des patients pour les lits d'hopitaux.
 
-mvn test
 
-## Build
 
-# Build du microservice Patient
-cd mspatient
+| PORT  | Microservice |
+| ------------- | ------------- |
+| 9000  | Hopital  |
+| 9001  | Patient  |
+| 9002  | Reservation  |
 
-mvn package
-
-# Build du microservice Hopital
-cd mshopital
-
-mvn package
-
-# Build du microservice Reservation
-cd msreservation
-
-mvn package
+![App Screenshot](https://i.imgur.com/GWVY08R.png)
 
 ## Pipeline CI/CD
-
-[Pipeline](https://github.com/SuperMoha/POCMedHead/blob/main/.github/workflows/maven.yml)
-
 
 Ce fichier de configuration permet d'automatiser les tests, le build et le déploiement du projet selon les branches définies. Il utilise Maven pour les microservices Java et Node.js pour le frontend.
 
 Le workflow Git retenu est structuré de manière à favoriser l'intégration continue et les déploiements réguliers. Il est recommandé de suivre ces bonnes pratiques pour assurer la stabilité et la fiabilité du projet.
+
+[Fichier Pipeline](https://github.com/SuperMoha/POCMedHead/blob/main/.github/workflows/maven.yml)
 
 ## Workflow GIT
 

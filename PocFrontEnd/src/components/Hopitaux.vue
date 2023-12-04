@@ -43,19 +43,19 @@
       </div>
       
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
-        <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-          <button id="deconnexion" @click="deconnexion" class="field input" type="button">Déconnexion</button>
-          <h1>Hopitaux</h1>
-        </div>
-        <div class="formbg-outer">
-          <div class="formbg">
-            <div class="formbg-inner padding-horizontal--48">
+    <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+      
+      <h1>Hopitaux</h1>
+    </div>
+    <div class="formbg-outer">
+      <div class="formbg">
+        <div class="formbg-inner padding-horizontal--48">
 
 
               <div class="field padding-bottom--24">
+                <input id="deconnexion" @click="deconnexion" class="field button padding-bottom--24" value="Déconnexion" type="button">
 
-
-                <form @submit.prevent="fetchHopitauxProches">
+                <form class="field padding-bottom--24" @submit.prevent="fetchHopitauxProches">
                   <label for="adresse">Veuillez saisir votre adresse actuelle :</label>
                   <input ref="adresse" id="adresse" type="text" required>
                   <br>
@@ -66,7 +66,7 @@
                     </option>
                   </select>
                   <br>
-                  <button class="field input" type="submit">Valider</button>
+                  <input class="field input button padding-bottom--24" type="submit" value="Valider">
                 </form>
 
 
@@ -77,7 +77,7 @@
                 <li :key="hopitaux[0].id">
                   <div class="highlighted-hopital">
                     {{ hopitaux[0].nom }} situé à {{ hopitaux[0].adresse }} possédant : {{ hopitaux[0].lits }} lits
-                    <button id="reserver" @click="reserverHopital(hopitaux[0])">Réserver</button>
+                    <button id="reserver" @click="reserverHopital(hopitaux[0])" class="field input button">Réserver</button>
                   </div>
                 </li>
               </ul>
@@ -86,7 +86,7 @@
               <p></p>
             </div>
 
-            <button id="supp" @click="showHopitaux = !showHopitaux">Afficher/Masquer les hopitaux supp.</button>
+            <input id="supp" @click="showHopitaux = !showHopitaux" class="field button " type="submit"  value="Afficher/Masquer les hopitaux supp.">
 
             <div v-if="showHopitaux">
               <h2>Autres hopitaux à proximité :</h2>
@@ -388,6 +388,20 @@ a.ssolink {
   100% {
     transform: translateX(0px);
   }
+}
+
+.button {
+  background-color: rgb(84, 105, 212);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.12) 0px 1px 1px 0px,
+    rgb(84, 105, 212) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+  color: rgb(84, 105, 212);
+  font-weight: 600;
+  cursor: pointer;
 }
 </style>
 

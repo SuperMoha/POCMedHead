@@ -43,43 +43,43 @@
             <div class="formbg">
               <div class="formbg-inner padding-horizontal--48">
                 <form id="stripe-login" @submit.prevent="submitForm">
-                  <div>
+                  <div class="field padding-bottom--24">
                     <label for="nom">Nom</label>
                     <input required type="text" id="nom" v-model="patient.nom" />
                   </div>
-                  <div>
+                  <div class="field padding-bottom--24">
                     <label for="prenom">Prenom</label>
                     <input required type="text" id="prenom" v-model="patient.prenom" />
                   </div>
-                  <div>
+                  <div class="field padding-bottom--24">
                     <label for="age">Age</label>
                     <input required type="number" id="age" v-model="patient.age" />
                   </div>
-                  <div>
+                  <div class="field padding-bottom--24">
                     <label for="sexe">Sexe</label>
                     <select id="sexe" v-model="patient.sexe">
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
                     </select>
                   </div>
-                  <div>
+                  <div class="field padding-bottom--24">
                     <label for="adresse">Adresse</label>
                     <input required type="text" id="adresse" v-model="patient.adresse" />
                   </div>
-                  <div>
+                  <div class="field padding-bottom--24">
                     <label for="numero">Numero</label>
                     <input required type="text" id="numero" v-model="patient.numero" />
                   </div>
-                  <div>
+                  <div class="field padding-bottom--24">
                     <label for="username">Username</label>
                     <input required type="text" id="username" v-model="patient.username" />
                   </div>
-                  <div>
+                  <div class="field padding-bottom--24">
                     <label for="password">Password</label>
                     <input required type="password" id="password" v-model="patient.password" />
                   </div>
 
-                  <div class="rgpd-link" data-cy="rgpd" @click="openRGPDPopup">Consentement RGPD</div>
+                  <div class="rgpd-link padding-bottom--24" data-cy="rgpd" id="rgpd" @click="openRGPDPopup"><b><a href="#rgpd">Consentement RGPD</a></b></div>
 
                   <div v-if="showRGPDPopup" class="rgpd-popup">
                     <div class="rgpd-popup-content">
@@ -87,8 +87,7 @@
                         conformément à notre politique de confidentialité et aux lois en vigueur.</p>
                       <p>Vos informations seront utilisées uniquement dans le cadre des services que nous proposons et ne
                         seront pas partagées avec des tiers sans votre consentement explicite.</p>
-                      <label for="rgpd-consent">J'accepte les consignes RGPD</label>
-                      <input type="checkbox" id="rgpd-consent" v-model="rgpdConsent" />
+                      <label for="rgpd-consent"><input type="checkbox" id="rgpd-consent" v-model="rgpdConsent" /> J'accepte les consignes RGPD </label>
                       <button @click="closeRGPDPopup">Fermer</button>
                     </div>
                   </div>
@@ -386,6 +385,53 @@ a.ssolink {
   100% {
     transform: translateX(0px);
   }
+}
+
+
+.field select {
+  font-size: 16px;
+  line-height: 28px;
+  padding: 8px 16px;
+  width: 100%;
+  min-height: 44px;
+  border: unset;
+  border-radius: 4px;
+  outline-color: rgb(84 105 212 / 0.5);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+
+.field select::after {
+  content: '\25BC'; 
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+
+.field select option {
+  background-color: #ffffff;
+  color: #1a1f36;
+}
+
+
+.field select:focus {
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(60, 66, 87, 0.16) 0px 0px 0px 2px, 
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 </style>
 
